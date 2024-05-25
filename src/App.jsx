@@ -7,6 +7,9 @@ import Sort from './components/Sort';
 import Search from './components/Search';
 
 const App = () => {
+  const [loading,setLoading]=useState(true)
+  const [Error,setError]=useState(false)
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [query, setQuery] = useState('');
@@ -20,11 +23,13 @@ const App = () => {
           
         //  console.log(response.data.products)
          setProducts(response.data.products);
-         setFilteredProducts(response.data.products)
+         setFilteredProducts(response.data.products);
+         setLoading(false)
       });
         
       } catch (error) {
         console.error('Error fetching products', error);
+        setError(true)
       }
     };
 
@@ -80,9 +85,9 @@ const App = () => {
       {/* Sorting Functionality */}
       <Sort onSort={setSortOption} />
       </div>
-      
+
       {/* Mapping */}
-      {filteredProducts?<ProductList products={filteredProducts} />:<h1>Loading.......</h1>}
+      {loading?<h1 className='mt-5 text-3xl text-center font-bold text-blue-800 '>Loading.......</h1>:Error?<h1 className='mt-5 text-3xl text-center font-bold text-red-600'>Error.......</h1>:<ProductList products={filteredProducts} />}
     </div>
   );
 };
