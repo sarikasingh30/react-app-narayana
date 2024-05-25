@@ -73,8 +73,8 @@ const App = () => {
   }, [category,query,sortOption,products]);
 
   return (
-    <div className="w-[95%] m-auto flex flex-col mt-5 p-5 bg-slate-400">
-      <div className='w-3/4 m-auto flex justify-between items-center'>
+    <div className="w-full flex flex-col p-5 bg-slate-400">
+      <div className='w-3/4 m-auto mt-8 flex justify-between items-center'>
 
       {/* Search Functionality */}
       <Search onSearch={setQuery} />
